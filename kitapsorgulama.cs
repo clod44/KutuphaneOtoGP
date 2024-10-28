@@ -34,7 +34,7 @@ namespace KutuphaneOtoGP
                 }
             }
         }
-        string oku = "D://AddBook.csv";
+        string oku = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
         private void kitapsorgulama_Load(object sender, EventArgs e)
         {
             string[] read = File.ReadAllLines(oku);

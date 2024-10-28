@@ -17,8 +17,8 @@ namespace KutuphaneOtoGP
         {
             InitializeComponent();
         }
-        public string uye = "D://AddUser.csv";
-        public string kitap = "D://AddBook.csv";
+        public string uye = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
+        public string kitap = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
         public string okuu;
         public string[] columns;
         private void kitapara_TextChanged(object sender, EventArgs e)
@@ -151,8 +151,8 @@ namespace KutuphaneOtoGP
             string kitapDurum = "DOLU";
             string kitapKonu = columns[8];
             int kitapIdValue = Convert.ToInt32(kitapId);
+            string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
 
-            string dosyaYolu = "D://AddBook.csv";
 
             if (File.Exists(dosyaYolu))
             {
@@ -202,7 +202,9 @@ namespace KutuphaneOtoGP
             {
                 string oku = uye;
                 okuu = kitap;
-                string teslim = "D://Teslim.csv";
+
+                
+                string teslim = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "Teslim.csv");
                 if (columns[7] == null)
                 {
                     return;

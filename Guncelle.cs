@@ -43,7 +43,8 @@ namespace KutuphaneOtoGP
             string mail = mailTXT.Text;
             string adres = adresTXT.Text;
 
-            string dosyaYolu = "D://AddUser.csv"; // CSV dosya yolunu burada belirtin
+
+            string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
 
             if (File.Exists(dosyaYolu))
             {

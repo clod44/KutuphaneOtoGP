@@ -28,7 +28,7 @@ namespace KutuphaneOtoGP
 
         public void liste()
         {
-            string read = "D://AddUser.csv";
+            string read = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
             string[] oku = File.ReadAllLines(read);
             if (oku.Length > 0)
             {
@@ -54,7 +54,7 @@ namespace KutuphaneOtoGP
         public void oku()
         {
             listBox1.Items.Clear();
-            string read = "D://AddUser.csv";
+            string read = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
             read.Split(';');
             string[] filepath = File.ReadAllLines(read);
             for (int i = 0; i < filepath.Length; i++)

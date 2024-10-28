@@ -22,7 +22,8 @@ namespace KutuphaneOtoGP
 
             try
             {
-                string FilePath = "D://AddUser.csv";
+
+                string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
                 StreamWriter Add = File.AppendText(FilePath);
                 Add.Write(txtTC.Text + ";");
                 Add.Write(txtAd.Text + ";");

@@ -1,4 +1,4 @@
-using System.Diagnostics.Eventing.Reader;
+ï»¿using System.Diagnostics.Eventing.Reader;
 using static System.Windows.Forms.LinkLabel;
 
 namespace KutuphaneOtoGP
@@ -10,32 +10,43 @@ namespace KutuphaneOtoGP
             InitializeComponent();
         }
 
-        string loginp = "D://loginpage.csv";
+        string loginp = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "loginpage.csv");
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] read = File.ReadAllLines(loginp);
-            foreach (string log in read)
+            if (!File.Exists(loginp))
             {
-                string[] columns = log.Split(';');
-                if (nameTXT.Text == columns[2])
-                {
-                    if (passTXT.Text == columns[3])
-                    {
-                        MessageBox.Show("Giriþ Baþarýlý");
-                        AnaSayfa anasayfafrm = new AnaSayfa();
-                        this.Hide();
-                        anasayfafrm.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tekrar Deneyiniz...");
-                    }
-                }
-
+                MessageBox.Show("Login file not found.");
+                return;
             }
 
+            string[] lines = File.ReadAllLines(loginp);
+
+            foreach (string log in lines)
+            {
+                string[] columns = log.Split(';');
+                if (columns.Length != 2)
+                {
+                    MessageBox.Show("Incorrect file format.");
+                    continue;
+                }
+
+                string username = columns[0];
+                string password = columns[1];
+
+                if (nameTXT.Text == username && passTXT.Text == password)
+                {
+                    MessageBox.Show("GiriÅŸ BaÅŸarÄ±lÄ±");
+                    AnaSayfa anasayfafrm = new AnaSayfa();
+                    this.Hide();
+                    anasayfafrm.ShowDialog();
+                    return;
+                }
+            }
+
+            MessageBox.Show("Tekrar Deneyiniz...");
         }
+
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
