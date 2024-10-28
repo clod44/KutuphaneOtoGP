@@ -33,6 +33,12 @@ namespace KutuphaneOtoGP
                 Add.WriteLine(txtAdres.Text);
                 Add.Close();
                 MessageBox.Show("Üye Kaydı Tamamlandı.");
+                txtTC.Clear();
+                txtAd.Clear();
+                txtSoyad.Clear();
+                txtTel.Clear();
+                txtMail.Clear();
+                txtAdres.Clear();
             }
             catch (Exception)
             {
