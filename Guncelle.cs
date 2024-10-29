@@ -21,7 +21,7 @@ namespace KutuphaneOtoGP
         }
 
 
-        public static int select;
+        public static int selectedLine;
         private void Guncelle_Load(object sender, EventArgs e)
         {
 
@@ -32,7 +32,7 @@ namespace KutuphaneOtoGP
             telTXT.Text = UyeListele.tel;
             mailTXT.Text = UyeListele.e_mail;
             adresTXT.Text = UyeListele.adres;
-            select = UyeListele.selectedValue;
+            selectedLine = UyeListele.selectedLine;
         }
 
         private void kaydet_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace KutuphaneOtoGP
                     guncellenmisVeriler[5] = adresTXT.Text;
 
                     // İlgili satırdaki verileri güncelle
-                    satirlar[select] = string.Join(";", guncellenmisVeriler);
+                    satirlar[selectedLine] = string.Join(";", guncellenmisVeriler);
 
                     // Dosyaya güncellenmiş verileri yaz
                     File.WriteAllLines(dosyaYolu, satirlar);

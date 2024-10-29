@@ -65,5 +65,11 @@ namespace KutuphaneOtoGP
             TeslimListesi tes = new TeslimListesi();
             tes.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //close the app
+            Application.Exit();
+        }
     }
 }
