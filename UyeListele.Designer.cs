@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UyeListele));
-            button1 = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -44,23 +43,13 @@
             columnHeaderTelNo = new ColumnHeader();
             columnHeaderMail = new ColumnHeader();
             columnHeaderAdres = new ColumnHeader();
+            label7 = new Label();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(825, 280);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(57, 35);
-            button1.TabIndex = 1;
-            button1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(10, 7);
+            label1.Location = new Point(12, 7);
             label1.Name = "label1";
             label1.Size = new Size(39, 15);
             label1.TabIndex = 3;
@@ -128,7 +117,7 @@
             listView1.Columns.AddRange(new ColumnHeader[] { columnHeaderTC, columnHeaderAd, columnHeaderSoyad, columnHeaderTelNo, columnHeaderMail, columnHeaderAdres });
             listView1.FullRowSelect = true;
             listView1.GridLines = true;
-            listView1.Location = new Point(12, 25);
+            listView1.Location = new Point(12, 31);
             listView1.MultiSelect = false;
             listView1.Name = "listView1";
             listView1.Size = new Size(872, 250);
@@ -162,12 +151,22 @@
             // 
             columnHeaderAdres.Text = "Adres";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(772, 293);
+            label7.Name = "label7";
+            label7.Size = new Size(108, 15);
+            label7.TabIndex = 6;
+            label7.Text = "Double click Editler";
+            // 
             // UyeListele
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(892, 324);
+            Controls.Add(label7);
             Controls.Add(listView1);
             Controls.Add(button2);
             Controls.Add(label6);
@@ -176,7 +175,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "UyeListele";
             Text = "UyeListele";
@@ -186,7 +184,6 @@
         }
 
         #endregion
-        private Button button1;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -201,5 +198,6 @@
         private ColumnHeader columnHeaderTelNo;
         private ColumnHeader columnHeaderMail;
         private ColumnHeader columnHeaderAdres;
+        private Label label7;
     }
 }

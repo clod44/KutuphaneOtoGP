@@ -17,21 +17,25 @@ namespace KutuphaneOtoGP
         {
             InitializeComponent();
         }
-        public static int select;
+        public static int selectedLine;
+        private void KitapGuncelle_Load(object sender, EventArgs e)
+        {
+            idTXT.Text = KitapListele.id;
+            kitapTXT.Text = KitapListele.kitapad;
+            yazarTXT.Text = KitapListele.yazar;
+            baskiTXT.Text = KitapListele.yil;
+            sayfaTXT.Text = KitapListele.sayfa;
+            dilTXT.Text = KitapListele.dil;
+            yayinTXT.Text = KitapListele.yayinevi;
+            durumTXT.Text = KitapListele.durum;
+            konuTXT.Text = KitapListele.konu;
+            selectedLine = KitapListele.selectedLine;
+            ;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-            string kitapAd = kitapTXT.Text;
-            string Yazar = yazarTXT.Text;
-            string Baski = baskiTXT.Text;
-            string Sayfa = sayfaTXT.Text;
-            string Dil = dilTXT.Text;
-            string yayin = yayinTXT.Text;
-            string durum = durumTXT.Text;
-            string konu = konuTXT.Text;
-
-            string dosyaYolu = "D://AddBook.csv"; // CSV dosya yolunu burada belirtin
+            string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
 
             if (File.Exists(dosyaYolu))
             {
@@ -41,6 +45,7 @@ namespace KutuphaneOtoGP
                 {
                     // Güncellenmiş verileri al
                     string[] guncellenmisVeriler = new string[9];
+                    guncellenmisVeriler[0] = idTXT.Text;
                     guncellenmisVeriler[1] = kitapTXT.Text;
                     guncellenmisVeriler[2] = yazarTXT.Text;
                     guncellenmisVeriler[3] = baskiTXT.Text;
@@ -51,29 +56,18 @@ namespace KutuphaneOtoGP
                     guncellenmisVeriler[8] = konuTXT.Text;
 
                     // İlgili satırdaki verileri güncelle
-                    satirlar[select] = string.Join(";", guncellenmisVeriler);
+                    satirlar[selectedLine] = string.Join(";", guncellenmisVeriler);
 
+                    MessageBox.Show(satirlar[selectedLine] + "");
                     // Dosyaya güncellenmiş verileri yaz
                     File.WriteAllLines(dosyaYolu, satirlar);
 
                     MessageBox.Show("Veriler güncellendi!");
+                    this.Close();
 
                 }
             }
 
-        }
-
-        private void KitapGuncelle_Load(object sender, EventArgs e)
-        {
-            KitapListele frm = new KitapListele();
-            kitapTXT.Text = KitapListele.kitapad;
-            yazarTXT.Text = KitapListele.yazar;
-            baskiTXT.Text = KitapListele.yil;
-            sayfaTXT.Text = KitapListele.sayfa;
-            dilTXT.Text = KitapListele.dil;
-            yayinTXT.Text = KitapListele.yayinevi;
-            durumTXT.Text = KitapListele.durum;
-            select = KitapListele.selectedValue;
         }
 
         private void button2_Click(object sender, EventArgs e)

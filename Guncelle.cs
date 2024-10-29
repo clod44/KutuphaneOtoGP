@@ -37,13 +37,6 @@ namespace KutuphaneOtoGP
 
         private void kaydet_Click(object sender, EventArgs e)
         {
-            string tc = tcTXT.Text;
-            string ad = adTXT.Text;
-            string soyad = soyadTXT.Text;
-            string mail = mailTXT.Text;
-            string adres = adresTXT.Text;
-
-
             string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
 
             if (File.Exists(dosyaYolu))
@@ -68,6 +61,7 @@ namespace KutuphaneOtoGP
                     File.WriteAllLines(dosyaYolu, satirlar);
 
                     MessageBox.Show("Veriler güncellendi!");
+                    this.Close();
 
                 }
             }

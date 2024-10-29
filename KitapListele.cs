@@ -17,68 +17,65 @@ namespace KutuphaneOtoGP
         {
             InitializeComponent();
         }
-        public static List<string[]> kitapBilgileri = new List<string[]>();
-        public static string kitapıd, kitapad, yazar, yil, sayfa, dil, yayinevi, durum, konu;
-        public static int selectedValue;
+        public static string id, kitapad, yazar, yil, sayfa, dil, yayinevi, durum, konu;
+        public static int selectedLine;
 
-
-        public void liste()
+        private void button1_Click(object sender, EventArgs e)
         {
-            string read = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
-            string[] oku = File.ReadAllLines(read);
-            if (oku.Length > 0)
-            {
-                string ilkSatir = listBox1.SelectedItem.ToString();
-                selectedValue = listBox1.SelectedIndex;
-                //ilkSatir = ilkSatir.Replace("  ", " ");
-                //ilkSatir = ilkSatir.Replace("    ", " ");
-                string[] parcalar = ilkSatir.Split(';');
-
-                kitapBilgileri.Add(parcalar);
-                kitapıd = parcalar[0];
-                kitapad = parcalar[1];
-                yazar = parcalar[2];
-                yil = parcalar[3];
-                sayfa = parcalar[4];
-                dil = parcalar[5];
-                yayinevi = parcalar[6];
-                durum = parcalar[7];
-                konu = parcalar[8];
-
-            }
+            this.Close();
         }
-
-
-
         public void oku()
         {
-
-            listBox1.Items.Clear();
+            listView1.Items.Clear();
             string read = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
-            read.Split(';');
             string[] filepath = File.ReadAllLines(read);
-            for (int i = 0; i < filepath.Length; i++)
-            {
-                listBox1.Items.Add(filepath[i]);
-            }
 
+            //her satır için
+            foreach (string line in filepath)
+            {
+                //satırı diziye çevir
+                string[] veriler = line.Split(';');
+                if (veriler.Length > 0)
+                {
+                    //diziyi listeye ekle
+                    ListViewItem item = new ListViewItem(veriler);
+                    listView1.Items.Add(item);
+                }
+            }
         }
         private void KitapListele_Load(object sender, EventArgs e)
         {
             oku();
         }
 
-        private void guncelle_Click(object sender, EventArgs e)
-        {
-            liste();
-            KitapGuncelle kitapfrm = new KitapGuncelle();
-            kitapfrm.ShowDialog();
-            oku();
-        }
 
-        private void button1_Click(object sender, EventArgs e)
+    
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Close();
+            //seçilen list satırını al
+            ListViewItem item = listView1.HitTest(e.Location).Item;
+
+            if (item != null)
+            {
+                if (item.SubItems.Count == 0) return;
+                //değerleri geçici olarak elinde tut
+                selectedLine = listView1.Items.IndexOf(item);
+                id = item.SubItems[0].Text;
+                kitapad = item.SubItems[1].Text;
+                yazar = item.SubItems[2].Text;
+                yil = item.SubItems[3].Text;
+                sayfa = item.SubItems[4].Text;
+                dil = item.SubItems[5].Text;
+                yayinevi = item.SubItems[6].Text;
+                durum = item.SubItems[7].Text;
+                konu = item.SubItems[8].Text;
+
+                //edit penceresini aç
+                KitapGuncelle kitapfrm = new KitapGuncelle();
+                kitapfrm.ShowDialog();
+                oku();
+            }
         }
     }
 }
