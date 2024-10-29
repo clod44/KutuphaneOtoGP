@@ -20,13 +20,16 @@ namespace KutuphaneOtoGP
         }
         public string uyelerPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
         public string kitaplarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
-        public static string[] seciliUye;
-        public static string[] seciliKitap;
+        public static string[] seciliUye = null;
+        public static string[] seciliKitap = null;
         private void KitapTeslim_Load(object sender, EventArgs e)
         {
             //datepickerları güncelle
             dateTimePicker_bugun.Value = DateTime.Now;
             dateTimePicker_teslimTarih.MinDate = dateTimePicker_bugun.Value;
+            //secili user ve kirabu sıfırla
+            seciliUye = null;
+            seciliKitap = null;
         }
 
         private void uyeleriFiltrele()
@@ -209,7 +212,77 @@ namespace KutuphaneOtoGP
             }
         }
 
-      
+        private void button_onayla_Click(object sender, EventArgs e)
+        {
+            
+            //kitap ve user seçilmediyse çık:
+            if(seciliUye == null || seciliKitap == null)
+            {
+                MessageBox.Show("Uye yada kitap seçili değil!");
+                return;
+            }
+
+
+            //ödünç islemini yap:
+            //1-ödünç kaydı oluştur
+            //2-kitabın durumunu güncelle
+
+            //ödünç kaydı oluşturma:
+            string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "Teslim.csv");
+            string[] lines = File.ReadAllLines(FilePath);
+            int lastLineNumber = lines.Length;
+            //yeni teslim ids otomatik hesaplanır. son satır indexi + 1
+            int teslimId = lastLineNumber + 1;
+            string veri = 
+                teslimId + ";" +      //teslim id
+                seciliUye[0] + ";" +  //uye id(TC)
+                seciliKitap[0] + ";" + //kitap id                                                  
+                dateTimePicker_bugun.Value.Ticks + ";" + //baslangıc zamanı (9123684914 gibi bişey)
+                dateTimePicker_teslimTarih.Value.Ticks + ";" + //teslimzamanı (9423684914 gibi bişey)
+                0  //uyenin kitabı teslim ettiği zaman (henuz etmedi)
+                ;
+
+            StreamWriter Add = File.AppendText(FilePath);
+            Add.WriteLine(veri);
+            Add.Close();
+            MessageBox.Show("Kitap Teslim kaydı oluşturuldu");
+
+
+
+
+            //kitabın durmunu guncelle
+            string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
+
+            if (File.Exists(dosyaYolu))
+            {
+                //her satır 1 kitap
+                string[] satirlar = File.ReadAllLines(dosyaYolu);
+
+                //tüm kitaplara bak ve ID lerini karşılaştır:
+                for (int i = 0;  i < satirlar.Length; i++) { 
+                    string kitap = satirlar[i];
+                    string[] kitapverileri = kitap.Split(";");
+                    string kitapId = kitapverileri[0];
+
+                    //eger idler eşit değilse bir sonrakine geç
+                    if (kitapId != seciliKitap[0])
+                        continue;
+
+                    //idler eşit ise:
+                    //ilgili kitabın durumunu değiştir
+                    kitapverileri[7] = "MEVCUT DEGIL";
+
+                    //yeni kitap verilerini tüm kitapların verilerine kaydet
+                    satirlar[i] = string.Join(";", kitapverileri);
+                    MessageBox.Show("Kitap durumu güncellendi");
+                    //looptan çık
+                    break;
+                }
+
+                //yeni kitaplığı dosyaya kaydet
+                File.WriteAllLines(dosyaYolu, satirlar);
+            }
+        }
     }
 
 }

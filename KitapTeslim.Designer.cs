@@ -463,6 +463,7 @@
             button_onayla.TabIndex = 5;
             button_onayla.Text = "Onayla";
             button_onayla.UseVisualStyleBackColor = true;
+            button_onayla.Click += button_onayla_Click;
             // 
             // label_teslimGunu
             // 
