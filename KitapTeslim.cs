@@ -8,6 +8,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KutuphaneOtoGP
 {
@@ -17,260 +18,198 @@ namespace KutuphaneOtoGP
         {
             InitializeComponent();
         }
-        public string uye = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
-        public string kitap = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
-        public string okuu;
-        public string[] columns;
-        private void kitapara_TextChanged(object sender, EventArgs e)
-        {
-            var Streamreader = new StreamReader(kitap);
-            string[] lines = File.ReadAllLines(kitap);
-            string selectedLine = "";
-            string selectedValue = kitapara.Text;
-
-            // Seçilen öğeye göre ilgili satırı buluyoruz.
-            foreach (string line in lines)
-            {
-                string[] columns = line.Split(';');
-                if (columns[1] == selectedValue)
-                {
-                    selectedLine = line;
-                    break;
-                }
-
-            }
-            if (!string.IsNullOrEmpty(selectedLine))
-            {
-                columns = selectedLine.Split(';');
-
-                kitapara.Text = columns[1];
-                yazarTXT.Text = columns[2];
-                dilTXT.Text = columns[5];
-                label10.Text = columns[0];
-                label14.Text = columns[7];
-            }
-            Streamreader.Close();
-        }
-
-        private void ara_TextChanged(object sender, EventArgs e)
-        {
-            var Streamreader = new StreamReader(uye);
-            string[] lines = File.ReadAllLines(uye);
-            string selectedLine = "";
-            string selectedValue = ara.Text;
-
-            // Seçilen öğeye göre ilgili satırı buluyoruz.
-            foreach (string line in lines)
-            {
-                string[] columns = line.Split(';');
-                if (columns[0] == selectedValue)
-                {
-                    selectedLine = line;
-                    break;
-                }
-
-
-            }
-            if (!string.IsNullOrEmpty(selectedLine))
-            {
-                string[] columns = selectedLine.Split(';');
-
-                tcTXT.Text = columns[0];
-                adTXT.Text = columns[1];
-                soyadTXT.Text = columns[2];
-                telTXT.Text = columns[3];
-            }
-        }
-
-        private void btngun_Click(object sender, EventArgs e)
-        {
-            TimeSpan gunfarki = DateTime.Parse(iadeTXT.Text) - DateTime.Parse(TeslimTXT.Text);
-            int gunhesap = gunfarki.Days;
-            gunlbl.Text = gunhesap.ToString();
-        }
-
-        //void KitapGuncelle()
-        //{
-        //    //MessageBox.Show(columns.ToString());
-
-        //    string kitapId = columns[0];
-        //    string kitapAdi = columns[1];
-        //    string kitapYazar = columns[2];
-        //    string kitapYil = columns[3];
-        //    string kitapSayfa = columns[4];
-        //    string kitapDil = columns[5];
-        //    string kitapYayinEvi = columns[6];
-        //    string kitapDurum = "DOLU";
-        //    string kitapKonu = columns[8];
-
-
-        //    string dosyaYolu = "E://AddBook.csv"; // CSV dosya yolunu burada belirtin
-
-        //    if (File.Exists(dosyaYolu))
-        //    {
-        //        string[] satirlar = File.ReadAllLines(dosyaYolu);
-        //        if (satirlar.Length > 0)
-        //        {
-        //            // Güncellenmiş verileri al
-        //            string[] guncellenmisVeriler = new string[9];
-        //            guncellenmisVeriler[0] = kitapId;
-        //            guncellenmisVeriler[1] = kitapAdi;
-        //            guncellenmisVeriler[2] = kitapYazar;
-        //            guncellenmisVeriler[3] = kitapYil;
-        //            guncellenmisVeriler[4] = kitapSayfa;
-        //            guncellenmisVeriler[5] = kitapDil;
-        //            guncellenmisVeriler[6] = kitapYayinEvi;
-        //            guncellenmisVeriler[7] = kitapDurum;
-        //            guncellenmisVeriler[8] = kitapKonu;
-        //            satirlar[Convert.ToInt32(kitapId)] = string.Join(";", guncellenmisVeriler);
-
-        //            // Dosyaya güncellenmiş verileri yaz
-        //            File.WriteAllLines(dosyaYolu, satirlar);
-
-        //            MessageBox.Show("Veriler güncellendi!");
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("CSV dosyası bulunamadı!");
-        //    }
-        //}
-
-        void KitapGuncelle()
-        {
-
-
-            string kitapId = columns[0];
-            string kitapAdi = columns[1];
-            string kitapYazar = columns[2];
-            string kitapYil = columns[3];
-            string kitapSayfa = columns[4];
-            string kitapDil = columns[5];
-            string kitapYayinEvi = columns[6];
-            string kitapDurum = "DOLU";
-            string kitapKonu = columns[8];
-            int kitapIdValue = Convert.ToInt32(kitapId);
-            string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
-
-
-            if (File.Exists(dosyaYolu))
-            {
-
-                string[] satirlar = File.ReadAllLines(dosyaYolu);
-                if (satirlar.Length >= kitapIdValue)
-                {
-                    // Güncellenmiş verileri al
-                    string[] guncellenmisVeriler = new string[9];
-                    guncellenmisVeriler[0] = kitapId;
-                    guncellenmisVeriler[1] = kitapAdi;
-                    guncellenmisVeriler[2] = kitapYazar;
-                    guncellenmisVeriler[3] = kitapYil;
-                    guncellenmisVeriler[4] = kitapSayfa;
-                    guncellenmisVeriler[5] = kitapDil;
-                    guncellenmisVeriler[6] = kitapYayinEvi;
-                    guncellenmisVeriler[7] = kitapDurum;
-                    guncellenmisVeriler[8] = kitapKonu;
-                    satirlar[Convert.ToInt32(kitapId) - 1] = string.Join(";", guncellenmisVeriler);
-
-                    File.WriteAllLines(dosyaYolu, satirlar);
-
-                    //MessageBox.Show("Veriler güncellendi!");
-                }
-                else
-                {
-                    MessageBox.Show("Kitap ID'si geçerli değil!");
-                }
-            }
-
-
-        }
-
-        private void teslim_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        public string uyelerPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
+        public string kitaplarPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
+        public static string[] seciliUye;
+        public static string[] seciliKitap;
         private void KitapTeslim_Load(object sender, EventArgs e)
         {
-
+            //datepickerları güncelle
+            dateTimePicker_bugun.Value = DateTime.Now;
+            dateTimePicker_teslimTarih.MinDate = dateTimePicker_bugun.Value;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void uyeleriFiltrele()
         {
-            try
+            //hep küçük harf kullan ki karşılaştırmada sıkıntı çıkmasın
+            string TC = textBox_TC.Text.ToLower();
+            string Ad = textBox_Ad.Text.ToLower();
+            string Soyad = textBox_Soyad.Text.ToLower();
+            string Telefon = textBox_Telefon.Text.ToLower();
+            string Email = textBox_Email.Text.ToLower();
+
+            //uyeleri oku
+            listView_uyeler.Items.Clear();
+            string[] filepath = File.ReadAllLines(uyelerPath);
+
+            //her satır için
+            foreach (string line in filepath)
             {
-                string oku = uye;
-                okuu = kitap;
 
-                
-                string teslim = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "Teslim.csv");
-                if (columns[7] == null)
-                {
-                    return;
-                }
-                if (columns[7] == "DOLU")
-                {
-                    MessageBox.Show("Başka bir kitap seçiniz.");
-                }
-                else
+                //satırı diziye çevir
+                string[] veriler = line.Split(';');
+                if (veriler.Length > 0)
                 {
 
+                    //önce verilere bak ki yazıdımız şeyleri içeriyormu diye
+                    string veriTC = veriler[0].ToLower();
+                    string veriAd = veriler[1].ToLower();
+                    string veriSoyad = veriler[2].ToLower();
+                    string veriTelefon = veriler[3].ToLower();
+                    string veriEmail = veriler[4].ToLower();
 
-                    KitapGuncelle();
+                    bool listedeGoster = false;
+                    if (TC.Length > 0 && veriTC.Contains(TC))
+                        listedeGoster = true;
 
-                    string[] lines = File.ReadAllLines(teslim);
+                    if (Ad.Length > 0 && veriAd.Contains(Ad))
+                        listedeGoster = true;
 
-                    int lastLineNumber = lines.Length;
+                    if (Soyad.Length > 0 && veriSoyad.Contains(Soyad))
+                        listedeGoster = true;
 
-                    string newLine = $"{lastLineNumber + 1} " + IDtxt.Text; // Burada textBox1, girilen veriyi tutan TextBox kontrolüdür.
+                    if (Telefon.Length > 0 && veriTelefon.Contains(Telefon))
+                        listedeGoster = true;
 
-                    using (StreamWriter sw = File.AppendText(teslim))
+                    if (Email.Length > 0 && veriEmail.Contains(Email))
+                        listedeGoster = true;
+
+                    //herhangi bir veri benziyorsa göster
+                    if (listedeGoster)
                     {
-                        sw.Write(newLine + ";");
+                        ListViewItem item = new ListViewItem(veriler);
+                        listView_uyeler.Items.Add(item);
                     }
-
-                    StreamWriter sww = File.AppendText(teslim);
-                    sww.Write(tcTXT.Text + ";");
-                    sww.Write(adTXT.Text + ";");
-                    sww.Write(soyadTXT.Text + ";");
-                    sww.Write(telTXT.Text + ";");
-                    sww.Write(kitapara.Text + ";");
-                    sww.Write(yazarTXT.Text + ";");
-                    sww.Write(dilTXT.Text + ";");
-                    sww.Write(gunlbl.Text + ";");
-                    sww.Write(TeslimTXT.Text + ";");
-                    sww.WriteLine(iadeTXT.Text);
-
-                    sww.Close();
-                    // Seçilen öğeye göre ilgili satırı buluyoruz.
-
-                    var Streamreader = new StreamReader(kitap);
-                    string[] liness = File.ReadAllLines(kitap);
-                    string selectedLine = "";
-                    string selectedValue = kitapara.Text;
-                    foreach (string line in liness)
-                    {
-                        string[] columns = line.Split(';');
-                        if (columns[1] == selectedValue)
-                        {
-                            StreamWriter yaz = File.AppendText(columns[7]);
-                            yaz.Write("dolu");
-                            yaz.Close();
-
-                            break;
-                        }
-                    }
-                    MessageBox.Show("Kitap Teslimi Başarıılı");
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Lütfen Gerekli Doldurmaları Yapınız!!!");
-            }
-
-
         }
+        private void kitaplariFiltrele()
+        {
+            string kitapID = textBox_kitapId.Text.ToLower();
+            string kitapAd = textBox_kitapAd.Text.ToLower();
+            string kitapYazar = textBox_kitapYazar.Text.ToLower();
+            string kitapBaskıYili = textBox_kitapBaskiYili.Text.ToLower();
+            string kitapDil = textBox_kitapDil.Text.ToLower();
+            string kitapYayinevi = textBox_kitapYayinevi.Text.ToLower();
+            string kitapDurum = textBox_kitapDurum.Text.ToLower();
+
+            listView_kitaplar.Items.Clear();
+            string[] filepath = File.ReadAllLines(kitaplarPath);
+
+            foreach (string line in filepath)
+            {
+                string[] veriler = line.Split(';');
+                if (veriler.Length > 0)
+                {
+                    string veriKitapID = veriler[0].ToLower();
+                    string veriKitapAd = veriler[1].ToLower();
+                    string veriKitapYazar = veriler[2].ToLower();
+                    string veriBaskiYili = veriler[3].ToLower();
+                    string veriDil = veriler[4].ToLower();
+                    string veriYayinevi = veriler[5].ToLower();
+                    string veriDurum = veriler[6].ToLower();
+
+                    bool listedeGoster = false;
+
+                    if (kitapID.Length > 0 && veriKitapID.Contains(kitapID))
+                        listedeGoster = true;
+
+                    if (kitapAd.Length > 0 && veriKitapAd.Contains(kitapAd))
+                        listedeGoster = true;
+
+                    if (kitapYazar.Length > 0 && veriKitapYazar.Contains(kitapYazar))
+                        listedeGoster = true;
+
+                    if (kitapBaskıYili.Length > 0 && veriBaskiYili.Contains(kitapBaskıYili))
+                        listedeGoster = true;
+
+                    if (kitapDil.Length > 0 && veriDil.Contains(kitapDil))
+                        listedeGoster = true;
+
+                    if (kitapYayinevi.Length > 0 && veriYayinevi.Contains(kitapYayinevi))
+                        listedeGoster = true;
+
+                    if (kitapDurum.Length > 0 && veriDurum.Contains(kitapDurum))
+                        listedeGoster = true;
+
+                    if (listedeGoster)
+                    {
+                        ListViewItem item = new ListViewItem(veriler);
+                        listView_kitaplar.Items.Add(item);
+                    }
+                }
+            }
+        }
+
+
+        private void btn_uyeAra_Click(object sender, EventArgs e)
+        {
+            uyeleriFiltrele();
+        }
+
+        private void button_kitapAra_Click(object sender, EventArgs e)
+        {
+            kitaplariFiltrele();
+        }
+
+        private void dateTimePicker_teslimTarih_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime baslangic = dateTimePicker_bugun.Value;
+            DateTime teslim = dateTimePicker_teslimTarih.Value;
+            int gunFarkı = (int)(teslim - baslangic).TotalDays;
+            label_teslimGunu.Text = gunFarkı.ToString();
+        }
+
+        private void listView_uyeler_DoubleClick(object sender, EventArgs e)
+        {
+            //secilen list iteminin degerlerini al
+            if (listView_uyeler.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView_uyeler.SelectedItems[0];
+                seciliUye = new string[]
+                {
+                    selectedItem.SubItems[0].Text,   //tc
+                    selectedItem.SubItems[1].Text,   //ad
+                    selectedItem.SubItems[2].Text,   //soyad
+                    selectedItem.SubItems[3].Text,   //telefon
+                    selectedItem.SubItems[4].Text,   //email
+                    selectedItem.SubItems[5].Text,   //adres
+                };
+
+                //tamamlama tabini güncelle
+                label_uye.Text = string.Join(" - ", seciliUye);
+
+                //sonraki tabi ac
+                tabControl1.SelectedTab = tabControl1.TabPages[1];
+            }
+        }
+        private void listView_kitaplar_DoubleClick(object sender, EventArgs e)
+        {
+
+            //secilen list iteminin degerlerini al
+            if (listView_kitaplar.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView_kitaplar.SelectedItems[0];
+                seciliKitap = new string[]
+                {
+                    selectedItem.SubItems[0].Text,   //id
+                    selectedItem.SubItems[1].Text,   //ad
+                    selectedItem.SubItems[2].Text,   //yazar
+                    selectedItem.SubItems[3].Text,   //baskı yılı  
+                    selectedItem.SubItems[4].Text,   //dil
+                    selectedItem.SubItems[5].Text,   //yayınevi
+                    selectedItem.SubItems[6].Text,   //durum
+                };
+
+                //tamamlama tabini güncelle
+                label_kitap.Text = string.Join(" - ", seciliKitap);
+
+                //sonraki tabi ac
+                tabControl1.SelectedTab = tabControl1.TabPages[2];
+            }
+        }
+
+      
     }
 
 }

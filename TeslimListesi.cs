@@ -16,11 +16,11 @@ namespace KutuphaneOtoGP
         {
             InitializeComponent();
         }
-        string read = "D://Teslim.csv";
+        string dosyaYolu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "Teslim.csv");
 
         private void TeslimListesi_Load(object sender, EventArgs e)
         {
-            string[] oku = File.ReadAllLines(read);
+            string[] oku = File.ReadAllLines(dosyaYolu);
             for (int i = 0; i < oku.Length; i++)
             {
                 listBox1.Items.Add(oku[i]);
