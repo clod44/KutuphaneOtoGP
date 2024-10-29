@@ -73,6 +73,7 @@
             dateTimePicker_bugun = new DateTimePicker();
             label_kitap = new Label();
             label_uye = new Label();
+            columnHeader14 = new ColumnHeader();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -398,7 +399,7 @@
             // 
             // listView_kitaplar
             // 
-            listView_kitaplar.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12, columnHeader13 });
+            listView_kitaplar.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12, columnHeader14, columnHeader13 });
             listView_kitaplar.Dock = DockStyle.Fill;
             listView_kitaplar.FullRowSelect = true;
             listView_kitaplar.GridLines = true;
@@ -437,7 +438,8 @@
             // 
             // columnHeader13
             // 
-            columnHeader13.Text = "durum";
+            columnHeader13.DisplayIndex = 6;
+            columnHeader13.Text = "konu";
             // 
             // tabPage3
             // 
@@ -508,6 +510,11 @@
             label_uye.Size = new Size(133, 15);
             label_uye.TabIndex = 0;
             label_uye.Text = "seçili üye: üye seçilmedi";
+            // 
+            // columnHeader14
+            // 
+            columnHeader14.DisplayIndex = 7;
+            columnHeader14.Text = "durum";
             // 
             // KitapTeslim
             // 
@@ -589,5 +596,6 @@
         private DateTimePicker dateTimePicker_teslimTarih;
         private DateTimePicker dateTimePicker_bugun;
         private Label label_kitap;
+        private ColumnHeader columnHeader14;
     }
 }

@@ -53,6 +53,17 @@ namespace KutuphaneOtoGP
                 string[] veriler = line.Split(';');
                 if (veriler.Length > 0)
                 {
+                    /*
+                    id
+                    ad
+                    yazar
+                    yıl
+                    sayfa
+                    dil
+                    yayınevi   
+                    konu
+                    durum
+                    */
 
                     //önce verilere bak ki yazıdımız şeyleri içeriyormu diye
                     string veriTC = veriler[0].ToLower();
@@ -110,7 +121,7 @@ namespace KutuphaneOtoGP
                     string veriBaskiYili = veriler[3].ToLower();
                     string veriDil = veriler[4].ToLower();
                     string veriYayinevi = veriler[5].ToLower();
-                    string veriDurum = veriler[6].ToLower();
+                    string veriDurum = veriler[7].ToLower();
 
                     bool listedeGoster = false;
 
@@ -214,9 +225,9 @@ namespace KutuphaneOtoGP
 
         private void button_onayla_Click(object sender, EventArgs e)
         {
-            
+
             //kitap ve user seçilmediyse çık:
-            if(seciliUye == null || seciliKitap == null)
+            if (seciliUye == null || seciliKitap == null)
             {
                 MessageBox.Show("Uye yada kitap seçili değil!");
                 return;
@@ -233,7 +244,7 @@ namespace KutuphaneOtoGP
             int lastLineNumber = lines.Length;
             //yeni teslim ids otomatik hesaplanır. son satır indexi + 1
             int teslimId = lastLineNumber + 1;
-            string veri = 
+            string veri =
                 teslimId + ";" +      //teslim id
                 seciliUye[0] + ";" +  //uye id(TC)
                 seciliKitap[0] + ";" + //kitap id                                                  
@@ -259,7 +270,8 @@ namespace KutuphaneOtoGP
                 string[] satirlar = File.ReadAllLines(dosyaYolu);
 
                 //tüm kitaplara bak ve ID lerini karşılaştır:
-                for (int i = 0;  i < satirlar.Length; i++) { 
+                for (int i = 0; i < satirlar.Length; i++)
+                {
                     string kitap = satirlar[i];
                     string[] kitapverileri = kitap.Split(";");
                     string kitapId = kitapverileri[0];

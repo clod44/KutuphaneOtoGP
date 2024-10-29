@@ -25,7 +25,7 @@ namespace KutuphaneOtoGP
             int lastLineNumber = lines.Length;
 
             //yemi kitap ids otomatik hesaplanır. son satır indexi + 1
-            int id = lastLineNumber + 1; 
+            int id = lastLineNumber + 1;
             string veri =
                 id + ";" +
                 txtKitapAd.Text + ";" +
@@ -34,7 +34,7 @@ namespace KutuphaneOtoGP
                 txtSayfa.Text + ";" +
                 txtDil.Text + ";" +
                 txtYayinevi.Text + ";" +
-                textBox1.Text + ";" +
+                textBox_durum.Text + ";" +
                 txtKonu.Text;
 
             StreamWriter Add = File.AppendText(FilePath);
