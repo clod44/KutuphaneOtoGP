@@ -24,15 +24,20 @@ namespace KutuphaneOtoGP
             {
 
                 string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
+                string veri = 
+                    txtTC.Text + ";" +
+                    txtAd.Text + ";" +
+                    txtSoyad.Text + ";" +
+                    txtTel.Text + ";" +
+                    txtMail.Text + ";" +
+                    txtAdres.Text
+                    ;
                 StreamWriter Add = File.AppendText(FilePath);
-                Add.Write(txtTC.Text + ";");
-                Add.Write(txtAd.Text + ";");
-                Add.Write(txtSoyad.Text + ";");
-                Add.Write(txtTel.Text + ";");
-                Add.Write(txtMail.Text + ";");
-                Add.WriteLine(txtAdres.Text);
+                Add.WriteLine(veri);
                 Add.Close();
+
                 MessageBox.Show("Üye Kaydı Tamamlandı.");
+                
                 txtTC.Clear();
                 txtAd.Clear();
                 txtSoyad.Clear();
