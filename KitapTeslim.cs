@@ -281,6 +281,7 @@ namespace KutuphaneOtoGP
 
                 //yeni kitaplığı dosyaya kaydet
                 File.WriteAllLines(dosyaYolu, satirlar);
+                this.Close();
             }
         }
     }
