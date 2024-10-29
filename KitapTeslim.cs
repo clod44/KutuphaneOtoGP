@@ -270,7 +270,7 @@ namespace KutuphaneOtoGP
 
                     //idler eşit ise:
                     //ilgili kitabın durumunu değiştir
-                    kitapverileri[7] = "MEVCUT DEGIL";
+                    kitapverileri[7] = "ODUNC VERILDI";
 
                     //yeni kitap verilerini tüm kitapların verilerine kaydet
                     satirlar[i] = string.Join(";", kitapverileri);
