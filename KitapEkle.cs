@@ -19,30 +19,30 @@ namespace KutuphaneOtoGP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string read = "D://AddBook.csv";
-            string[] lines = File.ReadAllLines(read);
+            string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddBook.csv");
+            string[] lines = File.ReadAllLines(FilePath);
 
             int lastLineNumber = lines.Length;
 
-            string newLine = $"{lastLineNumber + 1}" + ID.Text; // Burada textBox1, girilen veriyi tutan TextBox kontrolüdür.
+            //yemi kitap ids otomatik hesaplanır. son satır indexi + 1
+            int id = lastLineNumber + 1; 
+            string veri =
+                id + ";" +
+                txtKitapAd.Text + ";" +
+                txtYazar.Text + ";" +
+                txtYil.Text + ";" +
+                txtSayfa.Text + ";" +
+                txtDil.Text + ";" +
+                txtYayinevi.Text + ";" +
+                textBox1.Text + ";" +
+                txtKonu.Text;
 
-            using (StreamWriter sw = File.AppendText(read))
-            {
-                sw.Write(newLine + ";");
-            }
+            StreamWriter Add = File.AppendText(FilePath);
+            Add.WriteLine(veri);
+            Add.Close();
 
-
-            StreamWriter add = File.AppendText(read);
-            add.Write(txtKitapAd.Text + ";");
-            add.Write(txtYazar.Text + ";");
-            add.Write(txtYil.Text + ";");
-            add.Write(txtSayfa.Text + ";");
-            add.Write(txtDil.Text + ";");
-            add.Write(txtYayinevi.Text + ";");
-            add.Write(textBox1.Text + ";");
-            add.WriteLine(txtKonu.Text);
-            add.Close();
             MessageBox.Show("Kitap Başarılı bir şekilde eklendi.");
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)

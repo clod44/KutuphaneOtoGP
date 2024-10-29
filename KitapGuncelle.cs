@@ -58,7 +58,6 @@ namespace KutuphaneOtoGP
                     // İlgili satırdaki verileri güncelle
                     satirlar[selectedLine] = string.Join(";", guncellenmisVeriler);
 
-                    MessageBox.Show(satirlar[selectedLine] + "");
                     // Dosyaya güncellenmiş verileri yaz
                     File.WriteAllLines(dosyaYolu, satirlar);
 

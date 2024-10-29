@@ -49,6 +49,7 @@
             columnHeader7 = new ColumnHeader();
             columnHeader8 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
+            label10 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -194,12 +195,22 @@
             // 
             columnHeader9.Text = "konu";
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(679, 309);
+            label10.Name = "label10";
+            label10.Size = new Size(80, 15);
+            label10.TabIndex = 5;
+            label10.Text = "Double CLICK";
+            // 
             // KitapListele
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(780, 342);
+            Controls.Add(label10);
             Controls.Add(listView1);
             Controls.Add(button1);
             Controls.Add(label9);
@@ -241,5 +252,6 @@
         private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
+        private Label label10;
     }
 }
