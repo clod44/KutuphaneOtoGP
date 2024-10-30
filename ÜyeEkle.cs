@@ -24,7 +24,7 @@ namespace KutuphaneOtoGP
             {
 
                 string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "AddUser.csv");
-                string veri = 
+                string veri =
                     txtTC.Text + ";" +
                     txtAd.Text + ";" +
                     txtSoyad.Text + ";" +
@@ -37,7 +37,7 @@ namespace KutuphaneOtoGP
                 Add.Close();
 
                 MessageBox.Show("Üye Kaydı Tamamlandı.");
-                
+
                 txtTC.Clear();
                 txtAd.Clear();
                 txtSoyad.Clear();
