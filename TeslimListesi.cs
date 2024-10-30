@@ -73,6 +73,10 @@ namespace KutuphaneOtoGP
                     {
                         listedeGoster = false;
                     }
+                    if (checkBox_teslimBekleniyor.Checked && veriVerilisTarihi == "0")
+                    {
+                        listedeGoster = long.Parse(veriTeslimatTarihi) < DateTime.Now.Ticks;
+                    }
                     if (listedeGoster)
                     {
                         ListViewItem item = new ListViewItem(veriler);

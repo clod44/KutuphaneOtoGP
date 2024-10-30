@@ -26,7 +26,7 @@ namespace KutuphaneOtoGP
         {
             //datepickerları güncelle
             dateTimePicker_bugun.Value = DateTime.Now;
-            dateTimePicker_teslimTarih.MinDate = dateTimePicker_bugun.Value;
+            //dateTimePicker_teslimTarih.MinDate = dateTimePicker_bugun.Value;
             //secili user ve kirabu sıfırla
             seciliUye = null;
             seciliKitap = null;
@@ -55,17 +55,7 @@ namespace KutuphaneOtoGP
                 string[] veriler = line.Split(';');
                 if (veriler.Length > 0)
                 {
-                    /*
-                    id
-                    ad
-                    yazar
-                    yıl
-                    sayfa
-                    dil
-                    yayınevi   
-                    konu
-                    durum
-                    */
+
 
                     //önce verilere bak ki yazıdımız şeyleri içeriyormu diye
                     string veriTC = veriler[0].ToLower();
@@ -91,9 +81,9 @@ namespace KutuphaneOtoGP
                         listedeGoster = true;
                     if ((TC + Ad + Soyad + Telefon + Email).Length == 0)
                         listedeGoster = true;
-                        
+
                     //herhangi bir veri benziyorsa göster
-                        if (listedeGoster)
+                    if (listedeGoster)
                     {
                         ListViewItem item = new ListViewItem(veriler);
                         listView_uyeler.Items.Add(item);
@@ -119,13 +109,26 @@ namespace KutuphaneOtoGP
                 string[] veriler = line.Split(';');
                 if (veriler.Length > 0)
                 {
+                    /*
+                    0 id
+                    1 ad
+                    2 yazar
+                    3 yıl
+                    4 sayfa
+                    5 dil
+                    6 yayınevi   
+                    7 konu
+                    8 durum
+                    */
                     string veriKitapID = veriler[0].ToLower();
                     string veriKitapAd = veriler[1].ToLower();
                     string veriKitapYazar = veriler[2].ToLower();
                     string veriBaskiYili = veriler[3].ToLower();
-                    string veriDil = veriler[4].ToLower();
-                    string veriYayinevi = veriler[5].ToLower();
-                    string veriDurum = veriler[7].ToLower();
+                    string veriSayfa = veriler[4].ToLower();
+                    string veriDil = veriler[5].ToLower();
+                    string veriYayinevi = veriler[6].ToLower();
+                    string veriKonu = veriler[7].ToLower();
+                    string veriDurum = veriler[8].ToLower();
 
                     bool listedeGoster = false;
 
@@ -149,8 +152,8 @@ namespace KutuphaneOtoGP
 
                     if (kitapDurum.Length > 0 && veriDurum.Contains(kitapDurum))
                         listedeGoster = true;
-                    
-                    if ((kitapID + kitapAd + kitapYazar + kitapBaskıYili + kitapDil + kitapYayinevi + kitapDurum).Length == 0) 
+
+                    if ((kitapID + kitapAd + kitapYazar + kitapBaskıYili + kitapDil + kitapYayinevi + kitapDurum).Length == 0)
                         listedeGoster = true;
 
                     if (listedeGoster)
@@ -263,6 +266,8 @@ namespace KutuphaneOtoGP
             StreamWriter Add = File.AppendText(FilePath);
             Add.WriteLine(veri);
             Add.Close();
+            if (dateTimePicker_bugun.Value.Ticks > dateTimePicker_teslimTarih.Value.Ticks)
+                MessageBox.Show("Geçmiş bir zamana teslim tarihi yerleştirildi. deneme için izin verildi.");
             MessageBox.Show("Kitap Teslim kaydı oluşturuldu");
 
 

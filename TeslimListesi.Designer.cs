@@ -32,6 +32,7 @@
             tabPage2 = new TabPage();
             splitContainer2 = new SplitContainer();
             panel2 = new Panel();
+            checkBox_teslimBekleniyor = new CheckBox();
             checkBox_teslimEdildi = new CheckBox();
             textBox_kitapID = new TextBox();
             textBox_TC = new TextBox();
@@ -108,6 +109,7 @@
             // panel2
             // 
             panel2.AutoScroll = true;
+            panel2.Controls.Add(checkBox_teslimBekleniyor);
             panel2.Controls.Add(checkBox_teslimEdildi);
             panel2.Controls.Add(textBox_kitapID);
             panel2.Controls.Add(textBox_TC);
@@ -119,6 +121,17 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(150, 342);
             panel2.TabIndex = 0;
+            // 
+            // checkBox_teslimBekleniyor
+            // 
+            checkBox_teslimBekleniyor.AutoSize = true;
+            checkBox_teslimBekleniyor.Dock = DockStyle.Top;
+            checkBox_teslimBekleniyor.Location = new Point(0, 111);
+            checkBox_teslimBekleniyor.Name = "checkBox_teslimBekleniyor";
+            checkBox_teslimBekleniyor.Size = new Size(150, 19);
+            checkBox_teslimBekleniyor.TabIndex = 15;
+            checkBox_teslimBekleniyor.Text = "Teslimi Geçmiş";
+            checkBox_teslimBekleniyor.UseVisualStyleBackColor = true;
             // 
             // checkBox_teslimEdildi
             // 
@@ -379,5 +392,6 @@
         private Label label4;
         private Label label3;
         private Label label1;
+        private CheckBox checkBox_teslimBekleniyor;
     }
 }

@@ -63,9 +63,11 @@
             columnHeader8 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
+            columnHeader15 = new ColumnHeader();
             columnHeader11 = new ColumnHeader();
             columnHeader12 = new ColumnHeader();
             columnHeader13 = new ColumnHeader();
+            columnHeader14 = new ColumnHeader();
             tabPage3 = new TabPage();
             button_onayla = new Button();
             label_teslimGunu = new Label();
@@ -73,7 +75,6 @@
             dateTimePicker_bugun = new DateTimePicker();
             label_kitap = new Label();
             label_uye = new Label();
-            columnHeader14 = new ColumnHeader();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -399,7 +400,7 @@
             // 
             // listView_kitaplar
             // 
-            listView_kitaplar.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12, columnHeader14, columnHeader13 });
+            listView_kitaplar.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12, columnHeader13, columnHeader14, columnHeader15 });
             listView_kitaplar.Dock = DockStyle.Fill;
             listView_kitaplar.FullRowSelect = true;
             listView_kitaplar.GridLines = true;
@@ -428,18 +429,25 @@
             // 
             columnHeader10.Text = "baskı yılı";
             // 
+            // columnHeader15
+            // 
+            columnHeader15.Text = "konu";
+            // 
             // columnHeader11
             // 
-            columnHeader11.Text = "dil";
+            columnHeader11.Text = "sayfa";
             // 
             // columnHeader12
             // 
-            columnHeader12.Text = "yayınevi";
+            columnHeader12.Text = "dil";
             // 
             // columnHeader13
             // 
-            columnHeader13.DisplayIndex = 6;
-            columnHeader13.Text = "konu";
+            columnHeader13.Text = "yayınevi";
+            // 
+            // columnHeader14
+            // 
+            columnHeader14.Text = "durum";
             // 
             // tabPage3
             // 
@@ -510,11 +518,6 @@
             label_uye.Size = new Size(133, 15);
             label_uye.TabIndex = 0;
             label_uye.Text = "seçili üye: üye seçilmedi";
-            // 
-            // columnHeader14
-            // 
-            columnHeader14.DisplayIndex = 7;
-            columnHeader14.Text = "durum";
             // 
             // KitapTeslim
             // 
@@ -597,5 +600,6 @@
         private DateTimePicker dateTimePicker_bugun;
         private Label label_kitap;
         private ColumnHeader columnHeader14;
+        private ColumnHeader columnHeader15;
     }
 }
