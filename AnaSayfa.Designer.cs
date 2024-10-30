@@ -32,7 +32,6 @@
             Uye_Ekle = new Button();
             Kitap_Ekle = new Button();
             Kitap_Teslim = new Button();
-            Kitap_Sorgula = new Button();
             UyeListele = new Button();
             KitapListele = new Button();
             TeslimListesi = new Button();
@@ -87,18 +86,6 @@
             Kitap_Teslim.TextAlign = ContentAlignment.BottomCenter;
             Kitap_Teslim.UseVisualStyleBackColor = true;
             Kitap_Teslim.Click += Kitap_Teslim_Click;
-            // 
-            // Kitap_Sorgula
-            // 
-            Kitap_Sorgula.FlatStyle = FlatStyle.Flat;
-            Kitap_Sorgula.Image = (Image)resources.GetObject("Kitap_Sorgula.Image");
-            Kitap_Sorgula.Location = new Point(220, 172);
-            Kitap_Sorgula.Margin = new Padding(3, 2, 3, 2);
-            Kitap_Sorgula.Name = "Kitap_Sorgula";
-            Kitap_Sorgula.Size = new Size(68, 48);
-            Kitap_Sorgula.TabIndex = 3;
-            Kitap_Sorgula.UseVisualStyleBackColor = true;
-            Kitap_Sorgula.Click += Kitap_Sorgula_Click;
             // 
             // UyeListele
             // 
@@ -183,7 +170,6 @@
             Controls.Add(TeslimListesi);
             Controls.Add(KitapListele);
             Controls.Add(UyeListele);
-            Controls.Add(Kitap_Sorgula);
             Controls.Add(Kitap_Teslim);
             Controls.Add(Kitap_Ekle);
             Controls.Add(Uye_Ekle);
@@ -200,7 +186,6 @@
         private Button Uye_Ekle;
         private Button Kitap_Ekle;
         private Button Kitap_Teslim;
-        private Button Kitap_Sorgula;
         private Button UyeListele;
         private Button KitapListele;
         private Button TeslimListesi;

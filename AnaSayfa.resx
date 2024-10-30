@@ -233,23 +233,6 @@
         wIF/A2NqqA46xwssAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="Kitap_Sorgula.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAqtJREFUaEPt
-        2c2rTVEcxvHjPUpKIQYGEhMDwoRS3IH8ASiZMJAyIUrxBxhhQimue3G9/AEGhqZGivI2M/AWJQPk3fc5
-        9ctq9Tv77Kxt/5zTeeozOHvtu8597j777L3X7TgZw0/8CvQe01CUW/Amb9tcFMWKvIWOTlu2w0rcQXFu
-        QpO96L5qL+dgReZrQ2kiisyBlZjShiYSUWQprMhObWgiUR+tp9D7fuq+aiA3EFFkBeyo7NOG0kQVUe5D
-        7/0FxdcRK6KL4puW6UJoR2U1inIdNlmkURHL0BTRBcmbuG2jIpahKXIN3sRtGxWxDE2Rq/AmbtuoiKWp
-        Iu9wHCuhJ74FWIcL+ArvZ1LhRXTnuhn9cgzez5viIlfgTVyHbv1nIY0eY5djCfJbcz2D/IA3V1iRz5gJ
-        y3q8QrqPHg1uYzYs+oXTfUxYkbWwnIC3j9E5oiNkOYN8n+Iik8gn7ec5LDo/vH1yH2EftRnIVzdDiuyF
-        JX3K6+cILPeQjoUUWQhFX7HeeC+vYTmEdKy4yATSCeuwk1wnuDfey3dYtiAdCy2yBt54L99g2Yp0LKTI
-        Iijp0mcdT2A5inSsuMhlpBPWcRCWx/D28eyA5SHSsZAiWpOyLIa3T+4RLN6RDCki22DZgF63HvIM02Gx
-        RcHUKhRlHPmkdejEnQeL/sqXoFsXjeuC9xK7kecA8vnCisgHeP+kqbOOm5cJLSL6SO1BVfR1fREbu6/+
-        JC1zVhtKUlrE6LlEX+U6d3S7rpN3F+4iva+qKnNaG/42+lzbRG35J2UiikjjZaKKSKNldBKmk7etsTLR
-        RaSqzCltqJP/oYhUlVmmDf2i73gtDkTQ/9iryth6Qu2jEpmqMiehbVrkG4jkZQ5jP+xCugkDk7yMeYCB
-        i9aKtXqpI6G1sPNw0un8Bq87vbU3BeV4AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="UyeListele.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEYAAABLCAYAAADNsPFaAAAABGdBTUEAALGPC/xhBQAADCdJREFUeF7t

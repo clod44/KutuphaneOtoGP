@@ -30,6 +30,8 @@ namespace KutuphaneOtoGP
             //secili user ve kirabu sıfırla
             seciliUye = null;
             seciliKitap = null;
+            kitaplariFiltrele();
+            uyeleriFiltrele();
         }
 
         private void uyeleriFiltrele()
@@ -87,9 +89,11 @@ namespace KutuphaneOtoGP
 
                     if (Email.Length > 0 && veriEmail.Contains(Email))
                         listedeGoster = true;
-
+                    if ((TC + Ad + Soyad + Telefon + Email).Length == 0)
+                        listedeGoster = true;
+                        
                     //herhangi bir veri benziyorsa göster
-                    if (listedeGoster)
+                        if (listedeGoster)
                     {
                         ListViewItem item = new ListViewItem(veriler);
                         listView_uyeler.Items.Add(item);
@@ -144,6 +148,9 @@ namespace KutuphaneOtoGP
                         listedeGoster = true;
 
                     if (kitapDurum.Length > 0 && veriDurum.Contains(kitapDurum))
+                        listedeGoster = true;
+                    
+                    if ((kitapID + kitapAd + kitapYazar + kitapBaskıYili + kitapDil + kitapYayinevi + kitapDurum).Length == 0) 
                         listedeGoster = true;
 
                     if (listedeGoster)
