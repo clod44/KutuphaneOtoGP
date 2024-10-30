@@ -75,7 +75,50 @@ namespace KutuphaneOtoGP
 
         private void Login_Load(object sender, EventArgs e)
         {
+            /*
+            gerekli dosyaların varlığını kontrol et. yoksa oluştur.!!!!!!!!!!!
+                             
+            kutuphaneotogp.exe
+            gerekliDosyalar
+            - Personeller.csv
+            - AddBook.csv
+            - AddUser.csv
+            -Teslim.csv
+            */
 
+            string gerekliDosyalar = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar");
+            if (!Directory.Exists(gerekliDosyalar))
+            {
+                Directory.CreateDirectory(gerekliDosyalar);
+                MessageBox.Show("veritabanı bulunamadı. gerekliDosyalar Klasörü oluşturuldu ");
+            }
+            string personeller = Path.Combine(gerekliDosyalar, "Personeller.csv");
+            if (!File.Exists(personeller))
+            {
+                File.Create(personeller).Close();
+                StreamWriter Add = File.AppendText(personeller);
+                Add.WriteLine("a;a;default admin hesabı;1;1;1;1;1");
+                Add.Close();
+                MessageBox.Show("personel hesapları dosyası bulunamadı. oluşturuldu. username:'a' password:'a' ");
+            }
+            string addbook = Path.Combine(gerekliDosyalar, "AddBook.csv");
+            if (!File.Exists(addbook))
+            {
+                File.Create(addbook).Close();
+                MessageBox.Show("kitaplar dosyası bulunamadı. oluşturuldu. ");
+            }
+            string adduser = Path.Combine(gerekliDosyalar, "AddUser.csv");
+            if (!File.Exists(adduser))
+            {
+                File.Create(adduser).Close(); 
+                MessageBox.Show("üyeler dosyası bulunamadı. oluşturuldu. ");
+            }
+            string teslim = Path.Combine(gerekliDosyalar, "Teslim.csv");
+            if (!File.Exists(teslim))
+            {
+                File.Create(teslim).Close();
+                MessageBox.Show("teslim dosyası bulunamadı. oluşturuldu. ");
+            }
         }
     }
 }
