@@ -37,6 +37,7 @@
             KitapListele = new Button();
             TeslimListesi = new Button();
             button1 = new Button();
+            personelAyarlari = new Button();
             SuspendLayout();
             // 
             // Uye_Ekle
@@ -91,10 +92,10 @@
             // 
             Kitap_Sorgula.FlatStyle = FlatStyle.Flat;
             Kitap_Sorgula.Image = (Image)resources.GetObject("Kitap_Sorgula.Image");
-            Kitap_Sorgula.Location = new Point(219, 172);
+            Kitap_Sorgula.Location = new Point(220, 172);
             Kitap_Sorgula.Margin = new Padding(3, 2, 3, 2);
             Kitap_Sorgula.Name = "Kitap_Sorgula";
-            Kitap_Sorgula.Size = new Size(54, 48);
+            Kitap_Sorgula.Size = new Size(68, 48);
             Kitap_Sorgula.TabIndex = 3;
             Kitap_Sorgula.UseVisualStyleBackColor = true;
             Kitap_Sorgula.Click += Kitap_Sorgula_Click;
@@ -154,17 +155,30 @@
             button1.Location = new Point(219, 224);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(54, 34);
+            button1.Size = new Size(68, 34);
             button1.TabIndex = 9;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // personelAyarlari
+            // 
+            personelAyarlari.FlatStyle = FlatStyle.Flat;
+            personelAyarlari.Location = new Point(219, 2);
+            personelAyarlari.Margin = new Padding(3, 2, 3, 2);
+            personelAyarlari.Name = "personelAyarlari";
+            personelAyarlari.Size = new Size(85, 83);
+            personelAyarlari.TabIndex = 10;
+            personelAyarlari.Text = "Personel Ayarları";
+            personelAyarlari.UseVisualStyleBackColor = true;
+            personelAyarlari.Click += personelAyarlari_Click;
             // 
             // AnaSayfa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(283, 268);
+            ClientSize = new Size(300, 268);
+            Controls.Add(personelAyarlari);
             Controls.Add(button1);
             Controls.Add(TeslimListesi);
             Controls.Add(KitapListele);
@@ -191,5 +205,6 @@
         private Button KitapListele;
         private Button TeslimListesi;
         private Button button1;
+        private Button personelAyarlari;
     }
 }

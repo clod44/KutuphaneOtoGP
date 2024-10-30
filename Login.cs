@@ -10,41 +10,60 @@ namespace KutuphaneOtoGP
             InitializeComponent();
         }
 
-        string loginp = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "loginpage.csv");
+        string personellerPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "gerekliDosyalar", "Personeller.csv");
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(loginp))
+            if (!File.Exists(personellerPath))
             {
-                MessageBox.Show("Login file not found.");
+                MessageBox.Show("Personal bilgi dosyası bulunmamadı. gerekliDosyalar>Personeller.csv");
                 return;
             }
 
-            string[] lines = File.ReadAllLines(loginp);
+            string[] personeller = File.ReadAllLines(personellerPath);
 
-            foreach (string log in lines)
+
+            string password = null;
+            string[] geciciUser = new string[8];
+            foreach (string personel in personeller)
             {
-                string[] columns = log.Split(';');
-                if (columns.Length != 2)
+                string[] veriler = personel.Split(';');
+                if (veriler.Length != 0 && veriler.Length != 8)
                 {
-                    MessageBox.Show("Incorrect file format.");
-                    continue;
+                    MessageBox.Show("personel dosyası "+ string.Join(" - ",veriler) + " bozuk.");
                 }
+                                                    
 
-                string username = columns[0];
-                string password = columns[1];
-
-                if (nameTXT.Text == username && passTXT.Text == password)
+                if (nameTXT.Text == veriler[0])
                 {
-                    MessageBox.Show("Giriş Başarılı");
-                    AnaSayfa anasayfafrm = new AnaSayfa();
-                    this.Hide();
-                    anasayfafrm.ShowDialog();
-                    return;
+                    //user bulundu. şifresini kaydet.
+                    password = veriler[1];
+                    geciciUser = veriler;
+                    break;
                 }
             }
 
-            MessageBox.Show("Tekrar Deneyiniz...");
+            //kayıtlı şifre yok yani user bulunamamış.
+            if (password == null)
+            {
+                MessageBox.Show("User yok.");
+                return;
+            }
+            else
+            {
+                //user bulunduysa sifreyi karsılastır.
+                if (password != passTXT.Text)
+                {
+                    MessageBox.Show("şifre hatalı");
+                    return;                           //çık
+                }
+
+                MessageBox.Show("Giriş Başarılı");
+                AnaSayfa.personel = geciciUser;
+                AnaSayfa anasayfafrm = new AnaSayfa();
+                anasayfafrm.ShowDialog();
+                this.Close();
+            }
         }
 
 
